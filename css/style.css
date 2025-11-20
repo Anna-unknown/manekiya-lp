@@ -618,7 +618,7 @@ img {
 /* 画像を背景に持つエリアとして見出しの領域を確保 */
 .section-title {
     /* 背景画像をCSSで設定する場合 */
-    background-image: url('/img/5つのポイントトップ画像.jpg'); 
+    background-image: url('/img/ポイントトップ画像.jpg'); 
     background-size: cover;
     background-position: center top; /* 画像の上部を中央に表示 */
     background-repeat: no-repeat;
@@ -695,10 +695,6 @@ img {
     }
 }
 
-/*　---------------------------------------　⇧再度、編集が必要 ---------------------------------------------------- */
-
-
-
 /* --- 導入テキストブロック (.intro-question-block, .section-intro) --- */
 
 .intro-question-block, .section-intro {
@@ -730,7 +726,6 @@ img {
     padding: 0 2px;
 }
 
-/* -------------------- 5つのポイント詳細リスト -------------------- */
 .point-list {
   list-style: none;
   padding: 0;
