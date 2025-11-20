@@ -803,6 +803,11 @@ img {
   margin: 0 0 15px 0;
 }
 
+.sample {
+  text-align: center;
+  padding-top: 10px;
+}
+
 /* --- 画像 --- */
 .point-img {
   width: 70%;
