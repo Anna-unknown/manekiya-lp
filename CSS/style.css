@@ -1,0 +1,1123 @@
+@charset "UTF-8";
+
+/* リセットとベーススタイル */
+body {
+    margin: 0;
+    padding: 0;
+    /* ページの背景色はbodyに適用し、PCで左右の余白部分まで色を付ける */
+    background-color: #f5f5f5; 
+    font-family: 'Noto Sans JP', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    text-align: center;
+    font-size:  1.2rem; /* 12px */
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+/* -------------------- 共通コンテナ設定 (.lp-containerのみで制御) -------------------- */
+.lp-container {
+    width: 100%; /* モバイルでは画面いっぱいに */
+    
+    /* PCでの中央揃えと固定幅の設定 */
+    margin: 0 auto;
+    
+    /* LPのコンテンツ領域の背景色（白） */
+    background-color: #ffffff;
+    padding-bottom: 50px;
+
+    /* モバイルでの左右の余白（コンテンツが画面端に張り付かないように） */
+    /* bodyにpaddingを入れる代わりに、lp-containerの子要素で対応 */
+}
+
+/* PC・タブレットでの幅固定と中央揃え */
+@media (min-width: 601px) {
+    /* bodyへの設定を外し、lp-containerにのみ適用 */
+    .lp-container {
+        max-width: 600px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+}
+
+/* 【画像】常に親要素の幅に合わせる */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  /* 全てのブロックレベルの画像を中央揃えにする */
+  margin-left: auto; 
+  margin-right: auto;
+}
+
+
+/* -------------------- 【導入部分】-------------------- */
+
+/* バナー画像*/
+.banner {
+  margin: 20px auto;
+  /* モバイルでの左右の余白を確保するためのパディング */
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.main-text {
+/* モバイルでの左右の余白を確保するためのパディング */
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/*見出し部分*/
+
+/* --- アニメーションの定義 --- */
+@keyframes pulse-animation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.main-title {
+  /* 背景と文字の色 */
+  background-color: #cc0000; /* 濃い赤色 */
+  color: white;             /* 白い文字 */
+    
+  /* 文字のスタイル */
+  font-size: 2.4rem; /* 約24px (1rem=10px換算) */
+  font-weight: 900;  /* 非常に太いフォント */
+  text-align: center;
+  line-height: 1.5; /* 行の高さを調整 */
+
+  /* 外側の余白 */
+  margin: 30px auto; /* 上下に30px、左右をautoで中央揃え */
+    
+  /* 内側の余白: ボタンのサイズを決定 */
+  padding: 15px 20px; 
+    
+  /* 角丸: 非常に大きく丸める */
+  border-radius: 40px; 
+
+  /* ↓↓↓ テキストの折り返しを禁止 ↓↓↓ */
+  white-space: nowrap;
+    
+  /* 幅の制御: テキストに合わせて幅を狭くする */
+  display: inline-block; 
+  max-width: 90%; /* モバイルで広がりすぎないように制限 */
+    
+  /* 影の追加: 立体感を出すための影 */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4); 
+    
+  /* テキストの影（文字をくっきり見せるため) */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); 
+
+/* ↓↓↓ アニメーションの設定 ↓↓↓ */
+  transform: scale(1); /* transformの初期値 */
+  animation-name: pulse-animation;
+  animation-duration: 1.5s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@media (max-width: 600px) {
+  .main-title {
+    /* スマートフォンなどの狭い画面でのみフォントサイズを縮小 */
+    font-size: 1.8rem; /* 例: 元の 2.4rem から縮小 */
+    line-height: 1.4;
+  }
+}
+
+/* テキスト部分 */
+
+/* 価格強調 (1gあたり2万円超え) */
+.highlight-red {
+    font-size: 1.6rem; /* 16px */
+    font-weight: 900;
+    color: #cc0000; /* 赤色 */
+}
+
+/* 余白設定*/
+.text-with-space {
+  margin-bottom: 2rem;
+  margin-top: 1rem;
+  line-height: 2.5;
+}
+
+/* 強調テキスト（"売りどき"の波） */
+
+/* 売りどき強調（黄色い背景） */
+.highlight-text-sub {
+    font-size: 1.8rem; /* 18px */
+    font-weight: 900;
+    color: #333;
+    /* 黄色のマーカー部分 */
+    background: linear-gradient(transparent 60%, #ffe066 60%); 
+    display: inline-block;
+    padding: 0 5px;
+    margin-top: 5px;
+}
+
+
+/* 金貨画像後のテキスト */
+.detail-content-block {
+    /* テキスト部分 */
+    text-align: center;
+    padding: 0 5px;
+}
+
+.body-text-area {
+  margin-top: 2.5rem;
+}
+
+/* -------------------- 【CTA】-------------------- */
+
+/* --- CTA全体を囲むセクション --- */
+.cta-wrapper {
+  /* 左右に15pxの余白を確保 */
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.cta-section {
+  max-width: 480px; /* PCでの表示サイズを制限（適宜調整してください） */
+  margin: 40px auto; /* ページの中央に配置 */
+  padding: 0;
+}
+
+/* --- 電話発信リンク（ボタン全体） --- */
+.cta-button-link {
+  display: block;
+  text-decoration: none; /* リンクの下線を削除 */
+  border-radius: 10px; /* 角を丸く */
+  /* ホバー時のシャドウ変化のため、デフォルトのシャドウを設定 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s, box-shadow 0.2s;
+  /* 赤い背景と外側の黄色いボーダー */
+  background-color: #c90000; /* 画像の赤い背景色に近似 */
+  border: 5px solid #ffcc00; /* 外側の黄色いボーダー */
+
+  /* ↓↓↓ アニメーション名を pulse-animation に差し替え ↓↓↓ */
+  animation-name: pulse-animation; 
+  animation-duration: 1.3s; /* 1サイクル2秒 */
+  animation-timing-function: ease-in-out; 
+  animation-iteration-count: infinite; 
+  
+  /* transformの初期値設定（必須） */
+  transform: scale(1); 
+}
+
+/* ホバーエフェクト（マウスオーバー時） */
+.cta-button-link:hover {
+  transform: translateY(-5px); /* 少し上に移動 */
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3); /* シャドウを濃く */
+}
+
+/* --- CTAのコンテンツ（赤色の本体） --- */
+.cta-callout {
+  display: flex; /* 子要素（通話無料ボックスと詳細）を横並びにする */
+  align-items: center; /* 垂直方向の中央揃え */
+  color: white; /* 全体の文字色を白に */
+  padding: 15px; /* 内側のパディング */
+}
+
+/* --- 左側の「通話無料」ボックス --- */
+.cta-free-label {
+  background-color: #ffcc00;
+  color: #333;
+  padding: 10px 10px;
+  border-radius: 5px;
+  margin-right: 15px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  text-align: center;
+  
+  /* 601px以上の環境で、横書き2行（通話/無料）を維持するための幅固定 */
+  width: 4em; 
+  
+  display: flex; 
+  flex-direction: column; /* 縦2行に並べる */
+  justify-content: center;
+}
+
+.cta-free-label p {
+  margin: 0; /* pタグのデフォルトマージンを削除 */
+}
+
+/* --- 右側のテキストと電話番号 --- */
+.cta-details {
+  flex-grow: 1; /* 残りのスペースを全て占める */
+  text-align: center; /* 中央揃え */
+}
+
+.cta-details p {
+  margin: 0; /* pタグのデフォルトマージンを削除 */
+}
+
+/* --- メッセージ（今すぐ電話で相談！） --- */
+.cta-message {
+  font-size: 1.4rem; /* 大きめのフォントサイズ */
+  font-weight: bold;
+  margin-bottom: 5px !important;
+}
+
+/* --- 電話番号（0120-000-0000） --- */
+.cta-number {
+  font-size: 2.5rem; /* 最も目立つように非常に大きく */
+  font-weight: 900; /* 極太 */
+  letter-spacing: 1px;
+}
+
+/* --- 営業時間（9時〜21時） --- */
+.cta-hours {
+  font-size: 1rem;
+  margin-top: 5px !important;
+}
+
+/* スマートフォン表示など、狭い画面での調整 */
+
+@media (max-width: 600px) {
+  .cta-callout {
+    flex-direction: column; /* 縦並び */
+  }
+  
+  .cta-free-label {
+    margin: 0 0 10px 0;
+    padding: 5px 14px;
+    width: auto; /* スマホでは幅を自動調整に戻し、パディングでサイズを出す */
+    flex-direction: column; /* 縦2行の横書きを維持 */
+  }
+  
+  .cta-free-label p {
+      margin: 0; 
+  }
+
+  .cta-message {
+    font-size: 1.2rem;
+  }
+  
+  .cta-number {
+    font-size: 2rem;
+  }
+}
+
+/* --------------------【こんなものまで売れる金】--------------------*/
+.example-section { 
+  text-align: center;
+  /* モバイルでの左右の余白を確保するためのパディング */
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.responsive-break {
+    display: none; /* デフォルトでは改行を非表示 */
+}
+
+@media (max-width: 600px) {
+    .responsive-break {
+        /* ブロック要素にすることで、挿入された位置で必ず改行される */
+        display: block; 
+        
+        /* 改行部分が高さを持たないように調整 */
+        height: 0;
+        margin: 0;
+        padding: 0;
+    }
+}
+
+/* --- 金色の見出しコンテナ（「こんなものまで"売れる金"」） --- */
+.golden-heading-container {
+  /* 立体的な金色のグラデーションを適用 */
+  background: linear-gradient(to bottom, #f5d796 0%, #d8a04b 50%, #f5d796 100%);
+  padding: 15px 10px;
+
+  max-width: 450px; /* 幅設定 */
+  margin: 10px auto 20px auto; /* 中央揃えに設定し、ネガティブマージンを削除 */
+
+  /* 黒い枠線と影 */
+  border: 1px solid #333; /* 細い黒い枠線 */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5), /* 外側の柔らかい影 */
+              0 0 0 5px #333; /* 画像のような太い黒い縁取り（内側の影として利用） */
+}
+
+.golden-heading { 
+  font-weight: bold;
+  color: #333; /* 文字色を濃い色に */
+  line-height: 1.4;
+  margin: 0;
+  /* 文字の影を追加して、金色の上で読みやすくする */
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+/* "売れる金"の部分を強調 */
+.highlight-red-text {
+  color: #c90000;
+}
+
+/* 3つの特徴(カード) */
+.feature-pills-container {
+  display: flex;
+  justify-content: center; /* 中央に配置 */
+  gap: 20px; /* カード間のスペース */
+  margin-bottom: 25px;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  padding: 0 10px; /* 画面端に近くなりすぎないようパディング */
+}
+
+.feature-pill {
+  background-color: #000; /* 黒い背景に */
+  color: #ffcc00; 
+  font-weight: bold;
+
+  /* カードサイズ調整 */
+  width: 30px; /* 幅を固定して正方形に近づける */
+  height: 30px; /* 高さを固定 */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* 垂直方向の中央揃え */
+  line-height: 1.2;
+  text-align: center;
+
+  /* 金色の枠線とシャドウで立体感を出す */
+  border: 4px solid #ffcc00; /* 黄色の枠線 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4); /* 立体的な影 */
+  
+  /* 以前の flex-basis, max-width は削除または上書き */
+  flex-shrink: 0; /* 縮まないように */
+}
+
+/* --- テキストブロック全体 --- */
+.example-section > div:nth-child(4) {
+  text-align: center;
+  margin-bottom: 20px;
+  padding: 0 10px; /* 左右の余白 */
+}
+
+.example-section p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0 0 10px 0;
+}
+
+/* スマートフォンなど狭い画面での調整 */
+@media (max-width: 600px) {
+  .feature-pills-container {
+    gap: 10px; /* 狭い画面ではスペースを狭める */
+  }
+  .feature-pill {
+    width: 70px; /* スマホでは少し小さく */
+    height: 70px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (min-width: 601px) {
+  /* テキストの最大幅を制限して読みやすくする */
+  .example-section > div:nth-child(4),
+  .summary-text-block {
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* 見出しの文字サイズを少し大きくして強調 */
+  .golden-heading {
+    font-size: 1.8rem;
+  }
+  .highlight-red-text {
+    font-size: 2.2rem;
+  }
+  .red-bar-heading {
+    font-size: 1.4rem;
+  }
+
+  .feature-pill {
+    width: 100px; /* PCでは少し大きく */
+    height: 100px;
+    font-size: 1.4rem;
+  }
+}
+
+/* --- 注意事項ブロック全体 (.notice-block) のスタイル --- */
+.notice-block {
+  /* 以前の設定を維持しつつ、枠線を追加 */
+  text-align: center;
+  margin-top: 35px;
+  margin-bottom: 35px; 
+  padding: 20px 30px;
+
+  /* 黒い枠線 */
+  border: 4px solid #333;
+  background-color: white; 
+  position: relative; 
+  
+  /* PC表示で幅を制限し中央寄せ (CTAと同じ幅) */
+  max-width: 450px; 
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* --- テキスト（pタグ）のスタイル --- */
+.notice-block .notice-text {
+  line-height: 2;
+  margin: 0 0 20px 0;
+  font-size: 1.2rem;
+}
+
+/* --- ハイライト部分（spanタグ）のスタイル --- */
+.notice-block .notice-highlight {
+    background-color: #ffcc00; /* 画像に合わせ黄色 */
+    color: #333; /* 黒文字 */
+    border: none;
+    font-weight: bold;
+    padding: 2px 7px;
+}
+
+/* --- 四隅の赤いアクセント (左上・右上) --- */
+/* --- 左上・右上 (notice-blockに直接適用) --- */
+.notice-block::before,
+.notice-block::after {
+  content: "";
+  position: absolute;
+  width: 15px; 
+  height: 15px;
+  background-color: #c90000;
+  border: 2px solid #333; 
+}
+.notice-block::before { 
+  top: -10px; 
+  left: -10px; /* 左上 */
+} 
+.notice-block::after { 
+  top: -10px; 
+  right: -10px; /* 右上 */
+}
+
+/* --- 左下・右下 (last-paragraphに適用) --- */
+.last-paragraph {
+    position: relative; /* 疑似要素の位置基準をこの要素にする */
+    display: block; /* pタグが確実にブロック要素として振る舞うように */
+    /* ↓ ブロックの底を正確に掴むための調整 */
+    margin-bottom: 0 !important; 
+    padding-bottom: 0;
+}
+
+.last-paragraph::before,
+.last-paragraph::after {
+  content: "";
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background-color: #c90000;
+  border: 2px solid #333;
+}
+.last-paragraph::before { 
+  left: -40px;
+  bottom: -28px; /* 左下 */
+} 
+.last-paragraph::after { 
+  bottom: -28px; 
+  right: -40px; /* 右下 */
+}
+
+/* --- 赤いバー（たとえば、次のようなものもOKです▼) --- */
+.red-bar-heading {
+  /* オレンジから赤へのグラデーションを適用 */
+  background: linear-gradient(to top, #c90000 0%, #ff5e3a 100%); 
+  color: white;
+  /* bodyの1.2remに対して、1.25倍に設定 (1.2rem * 1.25 = 1.5rem) */
+  font-size: 1.25rem; 
+  font-weight: bold;
+  padding: 15px 0; /* 上下パディングを増やす */
+  margin: 30px auto 25px auto; /* 上部のマージンを調整 */
+  text-align: center;
+  line-height: 1.6; /* 2行になった際の行間を調整 */
+  
+  /* 黒い枠線と影 */
+  border: 4px solid #333;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  
+  /* PC表示で幅を制限し中央寄せ (CTAと同じ幅) */
+  max-width: 450px; 
+}
+
+/* 買取対象物のリスト(画像) */
+/* --- 買取対象物のリストコンテナ (.item-card) --- */
+.item-card {
+  list-style: none; /* デフォルトのリストマークを削除 */
+  padding: 0;
+  margin: 0;
+  
+  /* ↓↓↓ 最大幅の制限と中央揃え ↓↓↓ */
+  max-width: 400px; 
+  margin: 0 auto 30px auto; /* 上部のマージンを調整 */
+}
+
+/* --- 個々のリストアイテム（画像ブロック） (.item-block) --- */
+.item-block {
+  margin-bottom: 30px;
+  /* padding: 0 5px; ← max-widthを制限したため、不要な場合がある */
+  text-align: center; /* 念のため中央揃え */
+}
+
+/* --- 画像 (.item-img) --- */
+.item-block .item-img {
+  width: 100%; /* 親要素 (max-width: 400px) の幅いっぱいに広げる */
+  height: auto;
+  display: block;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* 補足: PC (601px以上) での調整 */
+/* .lp-containerがmax-width: 600pxのため、この設定は主にスマホ表示での影響を制御します。 */
+@media (min-width: 601px) {
+  .item-card {
+    /* PCではLP-containerの中央に配置されますが、念のため余白を調整 */
+    margin-bottom: 40px;
+  }
+}
+
+/* --- 画像 (.item-img)下のテキスト --- */
+.example-section .text-with-space {
+  font-size: 1.2rem;
+  line-height: 2.5;
+}
+
+.example-section .text-with-space2 {
+  font-size: 1.2rem;
+  margin-top: 30px;
+  line-height: 2.5;
+}
+
+
+/*---------------【5つのポイント】 -------------------*/
+
+.points-section {
+    padding-top: 0; /* 画像を上に詰めるため、上部パディングを0に */
+    padding-bottom: 20px;
+    text-align: center;
+    /* このセクション全体の背景色を、画像の下部や左右の余白の色に合わせる */
+    background-color: #fcf8ed; 
+}
+
+
+
+
+/*　---------------------------------------　⇧再度、編集が必要 ---------------------------------------------------- */
+
+/* --- メイン見出し (.section-title) --- */
+/* 画像を背景に持つエリアとして見出しの領域を確保 */
+.section-title {
+    /* 背景画像をCSSで設定する場合 */
+    background-image: url('/img/5つのポイントトップ画像.jpg'); 
+    background-size: cover;
+    background-position: center top; /* 画像の上部を中央に表示 */
+    background-repeat: no-repeat;
+    padding: 50px 15px 30px 15px;
+
+    /* テキストのスタイルを個別に設定 */
+    font-weight: 900;
+    color: #333; /* 「金ジュエリー買取」の部分の色を黒に戻す */
+    
+    /* 枠はここで削除 */
+    margin: 0 auto;
+    
+    /* 相対位置の基準 */
+    position: relative;
+    max-width: none; /* 背景画像を画面いっぱいに広げるため、幅制限を削除 */
+    width: 100%;
+}
+
+/* --- 小さなテキスト (「後悔しないために」) の位置調整 --- */
+.small-text {
+    /* HTMLのspanタグに適用 */
+    display: inline-block; /* インライン要素に戻す */
+    
+    /* 画像のように、黄色い背景を付けて囲む */
+    background-color: #ffcc00; 
+    color: #333;
+    padding: 8px 15px;
+    border-radius: 5px;
+    
+    font-size: 0.9rem;
+    font-weight: bold;
+    line-height: 1.2;
+    
+    /* 画像中央に配置するための位置調整 */
+    position: absolute;
+    top: 50px; /* 画像の上部から配置する位置を調整 */
+    left: 50%;
+    transform: translateX(-50%); /* 中央寄せ */
+    z-index: 10;
+}
+
+/* --- メインの赤いボックス (「5つのポイント」) --- */
+.highlight-number {
+    /* 赤い背景ボックスとして機能させる */
+    display: block;
+    max-width: 450px; /* ボックスの幅を制限 */
+    margin: 30px auto 0 auto; /* ボックスを中央寄せ */
+    
+    /* 赤い背景と黄色い枠線 */
+    background-color: #c90000;
+    border: 5px solid #ffcc00;
+    border-radius: 5px;
+    
+    /* テキストのサイズと色 */
+    color: white;
+    font-size: 2.2rem;
+    padding: 15px 10px;
+    line-height: 1.4;
+
+    /* テキストシャドウ */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* --- PC表示での見出し調整 --- */
+@media (min-width: 601px) {
+    .section-title {
+        /* PCでは、LPコンテナの幅に合わせる */
+        background-position: center top;
+        padding-top: 3rem; /* PCでは高さを増やす */
+        font-size: 2.5rem;
+    }
+    .highlight-number {
+        font-size: 2.8rem;
+    }
+}
+
+/*　---------------------------------------　⇧再度、編集が必要 ---------------------------------------------------- */
+
+
+
+/* --- 導入テキストブロック (.intro-question-block, .section-intro) --- */
+
+.intro-question-block, .section-intro {
+    max-width: 500px;
+    margin: 30px auto 30px auto;
+    text-align: center; 
+    padding: 0 15px;
+}
+
+.section-intro {
+    line-height: 1.8;
+    margin: 0 0 15px 0;
+}
+
+/* --- 強調装飾 --- */
+
+/* 「少しでも高く・安心して」 (黄色い下線) */
+.highlight-line {
+    /* 下線と背景を再現するためのコンテナ */
+    padding: 15px 15px;
+    margin-bottom: 15px;
+}
+
+.highlight-yellow-line {
+    /* 下線と背景を再現 */
+    background: linear-gradient(to top, #ffe066 30%, transparent 30%);
+    font-weight: bold;
+    display: inline; /* 複数の行にまたがっても適用されるように */
+    padding: 0 2px;
+}
+
+/* -------------------- 5つのポイント詳細リスト -------------------- */
+.point-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  
+  /* テキストの読みやすさを考慮して、リスト全体の最大幅を設定 */
+  max-width: 450px;
+}
+
+/* --- 個々のポイントアイテム --- */
+.point-item {
+  background-color: #ffffff; /* アイテムの背景は白 */
+  margin-bottom: 25px;
+  padding: 15px 8px 15px 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  
+  position: relative; /* 左のアクセントラインの基準 */
+  text-align: left;
+}
+
+/* --- 左側のカラーアクセントライン（縦線） --- */
+.point-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 8px; /* 線の太さ */
+  height: 100%;
+}
+
+/* --- ポイントのタイトル --- */
+.point-title {
+  font-size: 1.2rem; 
+  font-weight: 900;
+  color: #333;
+  margin: 0 0 10px 0;
+
+ /* ↓↓↓ 横並びと配置を制御 ↓↓↓ */
+  padding-left: 0; /* 左側パディングは不要に */
+  position: relative; 
+  display: flex; 
+  align-items: center; /* 垂直方向の中央揃え */
+}
+
+/* --- チェックマーク（見出しの前に配置） --- */
+.point-title::before {
+  content: '✓'; /* チェックマークの文字 */
+
+  /* ↓↓↓ 赤い四角のコンテナとして機能させる ↓↓↓ */
+  width: 20px; /* 四角の幅 */
+  height: 20px; /* 四角の高さ */
+  background-color: #c90000; /* 赤い四角の背景 */
+  color: white; /* チェックマークの文字色を白に */
+  
+  /* 四角の中央にチェックマークを配置 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  font-size: 1rem; /* チェックマークのサイズ */
+  font-weight: 900;
+  
+  /* タイトルテキストとの間にマージン */
+  margin-right: 10px;
+  
+  /* その他の位置設定はリセット */
+  position: static; 
+  transform: none;
+}
+
+/* --- テキスト（内容） --- */
+.point-item p {
+  font-size: 1rem;
+  line-height: 1.7;
+  margin: 0 0 15px 0;
+}
+
+/* --- 画像 --- */
+.point-img {
+  width: 70%;
+  height: auto;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* --- カラーバリエーション --- */
+
+/* ポイント1: 赤 */
+.point-bg-red::before {
+  background-color: #c90000;
+  /* 左側のアクセントラインの色は維持 */
+}
+
+.point-bg-red .point-title::before {
+  background-color: #c90000; /* 赤い四角 */
+  color: white; /* 白いチェックマーク */
+}
+
+/* ポイント2: オレンジ */
+.point-bg-orange::before {
+  background-color: #ff5e3a;
+  /* 左側のアクセントラインの色は維持 */
+}
+
+.point-bg-orange .point-title::before {
+  background-color: #ff5e3a;
+  color: white;
+}
+
+/* ポイント3: 緑 */
+.point-bg-green::before {
+  background-color: #4CAF50;
+  /* 左側のアクセントラインの色は維持 */
+}
+
+.point-bg-green .point-title::before {
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* ポイント4: 青 */
+.point-bg-blue::before {
+  background-color: #2196F3;
+  /* 左側のアクセントラインの色は維持 */
+}
+
+.point-bg-blue .point-title::before {
+  background-color: #2196F3;
+  color: white;
+}
+
+/* ポイント5: 紫 */
+.point-bg-purple::before {
+  background-color: #9C27B0;
+  /* 左側のアクセントラインの色は維持 */
+}
+
+.point-bg-purple .point-title::before {
+  background-color: #9C27B0;
+  color: white;
+}
+
+/* -------------------- まとめ見出し (.summary-heading) -------------------- */
+.summary-heading {
+  /* 背景色と文字色の設定 */
+  background-color: #c90000; /* 赤い背景 */
+  color: white; /* 白い文字 */
+  
+  /* 上部の黄色いラインを border-top で再現 */
+  border-top: 8px solid #ffcc00; /* 黄色いラインの太さと色 */
+  
+  /* テキストのスタイル */
+  font-size: 1.2rem;
+  font-weight: 900;
+  text-align: center;
+  line-height: 1.4;
+  
+  /* 内側の余白 */
+  padding: 15px 20px;
+  
+  /* ↓↓↓ 最大幅と中央揃えを設定 ↓↓↓ */
+  max-width: 500px; 
+  margin: 30px auto 0 auto; 
+}
+
+/* PC・タブレットでの調整 (min-width: 601px) */
+@media (min-width: 601px) {
+    .summary-heading {
+        /* フォントサイズを大きくする */
+        font-size: 1.8rem;
+    }
+}
+
+/* ------------------------【中間CTAセクション】------------------------ */
+
+/* --- メッセージとボタン全体を囲むフルリンク --- */
+.cta-button-link-full {
+  display: block; /* <a>タグをブロック要素にする */
+  text-decoration: none;
+  color: white; /* リンク内の文字色を白に統一 */
+    
+  /* 全体を囲む赤い背景と黄色い枠線、シャドウを適用 */
+  background-color: #c90000;
+  border: 5px solid #ffcc00;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s, box-shadow 0.2s;
+
+  /* ↓↓↓ アニメーション名を pulse-animation に差し替え ↓↓↓ */
+  animation-name: pulse-animation; 
+  animation-duration: 1.5s; /* 1サイクル2秒 */
+  animation-timing-function: ease-in-out; 
+  animation-iteration-count: infinite; 
+  
+  /* transformの初期値設定（必須） */
+  transform: scale(1); 
+}
+
+/* ホバーエフェクト（全体に適用） */
+.cta-button-link-full:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* --- メッセージエリア (.cta-message-area) --- */
+.cta-message-area {
+  padding: 15px 15px 3px 15px;
+  text-align: center;
+}
+
+/* 上部の相場メッセージ */
+.cta-top-message {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 0 0 5px 0;
+}
+
+/* メインメッセージ (価値をチェック) */
+.cta-main-message {
+  font-size: 1.5rem;
+  font-weight: bold;
+  line-height: 1.5;
+  margin: 0 0 10px 0;
+}
+
+/* メインメッセージのハイライト (価値をチェック) */
+.cta-highlight-value {
+  color: #ffcc00; /* 黄色にハイライト */
+  font-weight: 900;
+}
+
+/* サブメッセージ (信頼できる買取店なら) */
+.cta-sub-message {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* --------------------まねきやなら業者取引価格で買取-------------------- */
+.where-to-sell-section {
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-top: 4rem;
+  margin-bottom: 3rem;
+}
+
+/*  買取店の特徴リスト */
+.store-feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 40px auto; /* 上下に大きな余白、中央配置 */
+  
+  /* カードの最大幅を制限し、中央に配置 */
+  max-width: 360px; 
+}
+
+/* --- 個々の特徴カード (.store-feature-item) --- */
+.store-feature-item {
+  background-color: #ffffff; 
+  border-radius: 8px;
+  margin-bottom: 35px;
+  padding-bottom: 10px;
+  
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); 
+  position: relative; /* チェックバッジとタイトルアイコンの基準 */
+  text-align: left;
+}
+
+/* --- 画像 (.feature-img) --- */
+.feature-img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px 8px 0 0;
+  display: block;
+}
+
+/* --- 画像上部のチェックバッジ (赤丸のチェック) --- */
+.check-icon-badge {
+    position: absolute;
+    top: 10px; 
+    right: 10px; 
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    color: white; /* チェックマークは白文字 */
+    font-size: 1.2rem;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+/* --- タイトル (.feature-title) --- */
+.feature-title {
+  font-size: 1.2rem; 
+  font-weight: bold;
+  color: #333;
+  margin: 15px 15px 5px 15px; 
+  padding: 0;
+  text-align: left;
+}
+/* タイトル内の不要なアイコンを非表示 */
+.feature-title .material-icons { display: none; }
+
+/* --- 特徴の詳細 (.feature-description) --- */
+.feature-description {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  text-align: left;
+  margin: 0 15px 15px 15px;
+}
+
+/* -------------------- カラークラスによる動的な色設定 -------------------- */
+
+/* 各アイテムに付与したクラスに基づき、バッジの色を設定 */
+.color-red .check-icon-badge { background-color: #d90000; }
+/* ↓↓↓ ここにあった.color-red::before {} の記述は削除 ↓↓↓ */
+.color-orange .check-icon-badge { background-color: #ff5e3a; }
+/* ↓↓↓ ここにあった.color-orange::before {} の記述は削除 ↓↓↓ */
+.color-green .check-icon-badge { background-color: #4CAF50; }
+/* ↓↓↓ ここにあった.color-green::before {} の記述は削除 ↓↓↓ */
+.color-blue .check-icon-badge { background-color: #2196F3; }
+/* ↓↓↓ ここにあった.color-blue::before {} の記述は削除 ↓↓↓ */
+
+/* -------------------- モバイル表示調整 -------------------- */
+@media (max-width: 600px) {
+    /* 必要であればモバイルでのフォントサイズやマージンを調整 */
+    .store-feature-list {
+        max-width: none; /* スマホでは幅制限を解除 */
+        padding: 0 15px; /* モバイルでの左右余白はラッパーから移動 */
+    }
+    .store-feature-item {
+        margin-bottom: 25px;
+    }
+}
+
+/* -------------------- 訴求付きCTA（査定へ誘導） (.assessment-cta) -------------------- */
+.assessment-cta {
+    /* 外観: 黄色の背景と立体的な影 */
+    background-color: #ffcc00; /* 黄色の背景色 */
+    padding: 30px 20px; /* 上下のパディングを大きく */
+    border-radius: 10px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* 立体的な影 */
+    
+    /* 配置: 中央揃えと幅制限 */
+    max-width: 450px; 
+    margin: 40px auto; 
+    
+    position: relative; /* CHECK!ラベルの配置基準 */
+    text-align: center;
+}
+
+/* --- 赤い「CHECK!」ラベル (.cta-check-label) --- */
+.cta-check-label {
+    /* 位置: 上部中央に配置 */
+    position: absolute;
+    top: -18px; /* 上に飛び出させる */
+    left: 50%;
+    transform: translateX(-50%);
+    
+    /* 外観: 赤いボタン風 */
+    background-color: #c90000; /* 赤色 */
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 900;
+    padding: 5px 20px;
+    border-radius: 20px;
+    
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    text-transform: uppercase;
+    z-index: 10; /* 他の要素の上に表示 */
+}
+
+/* --- プレタイトル (迷ったらまず) (を試してみましょう) --- */
+.cta-pre-title {
+    font-size: 1rem;
+    color: #333;
+    line-height: 1.5;
+    margin: 0 0 5px 0; /* タイトルとの間に少しスペース */
+    margin-top: 15px; /* CHECK!ラベルの分の調整 */
+}
+
+/* --- タイトル (まねきやの無料査定) --- */
+.cta-title {
+    font-size: 2rem; /* 非常に大きく */
+    font-weight: 900;
+    color: #333;
+    line-height: 1.2;
+    margin-top: 15px;
+}
